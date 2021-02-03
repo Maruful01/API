@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #ul-container li{
+           list-style: none;
+           color:aqua;
+           font-size: 30px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>API Json</h1>
+    <ul id="ul-container">
+
+    </ul>
+    <script>
+        fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response => response.json())
+        .then(json => displayUsers (json))
+        function displayUsers (users) {
+                 const userName = users.map (user => user.username);
+                 console.log ("Users ", userName);
+
+                 for (let i = 0; i < userName.length; i++) {
+
+                     const user = userName [i];
+                     const li = document.createElement ("li");
+                     li.innerText = user;
+                     const ul = document.getElementById ("ul-container");
+                     ul.appendChild(li);
+                 }
+                 }
+    </script>
+</body>
+</html>
